@@ -1,0 +1,11 @@
+streamlit>=1.66
+plotly
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+joblib
+jupyter
+ipykernel
+# For the tests only:  pip install pytest

@@ -1,0 +1,30 @@
+{
+  "test_metrics": {
+    "Logistic Regression": {
+      "Accuracy": 0.933333,
+      "Precision (macro)": 0.933333,
+      "Recall (macro)": 0.933333,
+      "F1-score (macro)": 0.933333
+    },
+    "Decision Tree": {
+      "Accuracy": 0.966667,
+      "Precision (macro)": 0.969697,
+      "Recall (macro)": 0.966667,
+      "F1-score (macro)": 0.966583
+    }
+  },
+  "cross_validation": {
+    "Logistic Regression": {
+      "CV mean accuracy": 0.953333,
+      "CV std accuracy": 0.045216,
+      "CV mean F1 (macro)": 0.953216
+    },
+    "Decision Tree": {
+      "CV mean accuracy": 0.96,
+      "CV std accuracy": 0.024944,
+      "CV mean F1 (macro)": 0.959832
+    }
+  },
+  "best_model": "Decision Tree",
+  "reason": "Decision Tree has the highest macro F1-score on the test set (0.967 vs 0.933)."
+}
