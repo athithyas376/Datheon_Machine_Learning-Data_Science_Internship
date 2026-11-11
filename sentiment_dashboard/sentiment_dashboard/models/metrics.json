@@ -1,0 +1,273 @@
+{
+  "trained_at": "2026-11-11 14:37:52",
+  "sklearn_version": "1.8.0",
+  "preprocessing_backend": {
+    "stopwords": "NLTK stopwords",
+    "lemmatizer": "NLTK WordNet lemmatizer",
+    "using_nltk": true
+  },
+  "dataset": {
+    "source": "Bundled starter data: sentiment_reviews.csv + demo_sample_reviews.csv",
+    "n_raw": 74,
+    "n_unlabeled_dropped": 1,
+    "n_duplicates_dropped": 0,
+    "n_empty_after_cleaning": 0,
+    "n_used": 73,
+    "class_counts": {
+      "positive": 37,
+      "negative": 36
+    },
+    "avg_words": 12.356164383561644,
+    "median_words": 12.0,
+    "min_words": 9,
+    "max_words": 16
+  },
+  "split": {
+    "test_size": 0.2,
+    "n_train": 58,
+    "n_test": 15,
+    "random_state": 42,
+    "train_counts": {
+      "positive": 29,
+      "negative": 29
+    },
+    "test_counts": {
+      "positive": 8,
+      "negative": 7
+    }
+  },
+  "tfidf": {
+    "vocab_size": 695,
+    "max_features": 5000,
+    "ngram_range": [
+      1,
+      2
+    ]
+  },
+  "models": {
+    "multinomial_nb": {
+      "accuracy": 0.6,
+      "precision": 0.5982142857142857,
+      "recall": 0.5982142857142857,
+      "f1": 0.5982142857142857,
+      "train_accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          4,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "report": {
+        "negative": {
+          "precision": 0.5714285714285714,
+          "recall": 0.5714285714285714,
+          "f1-score": 0.5714285714285714,
+          "support": 7.0
+        },
+        "positive": {
+          "precision": 0.625,
+          "recall": 0.625,
+          "f1-score": 0.625,
+          "support": 8.0
+        },
+        "accuracy": 0.6,
+        "macro avg": {
+          "precision": 0.5982142857142857,
+          "recall": 0.5982142857142857,
+          "f1-score": 0.5982142857142857,
+          "support": 15.0
+        },
+        "weighted avg": {
+          "precision": 0.6,
+          "recall": 0.6,
+          "f1-score": 0.6,
+          "support": 15.0
+        }
+      },
+      "label": "Multinomial Naive Bayes",
+      "cv_accuracy_mean": 0.6028571428571428,
+      "cv_accuracy_std": 0.047960679283863515
+    },
+    "logistic_regression": {
+      "accuracy": 0.6,
+      "precision": 0.5982142857142857,
+      "recall": 0.5982142857142857,
+      "f1": 0.5982142857142857,
+      "train_accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          4,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "report": {
+        "negative": {
+          "precision": 0.5714285714285714,
+          "recall": 0.5714285714285714,
+          "f1-score": 0.5714285714285714,
+          "support": 7.0
+        },
+        "positive": {
+          "precision": 0.625,
+          "recall": 0.625,
+          "f1-score": 0.625,
+          "support": 8.0
+        },
+        "accuracy": 0.6,
+        "macro avg": {
+          "precision": 0.5982142857142857,
+          "recall": 0.5982142857142857,
+          "f1-score": 0.5982142857142857,
+          "support": 15.0
+        },
+        "weighted avg": {
+          "precision": 0.6,
+          "recall": 0.6,
+          "f1-score": 0.6,
+          "support": 15.0
+        }
+      },
+      "label": "Logistic Regression",
+      "cv_accuracy_mean": 0.5895238095238096,
+      "cv_accuracy_std": 0.05556553198405646
+    }
+  },
+  "warnings": [
+    "Only 73 labelled reviews were used. The metrics are real but based on a very small dataset, so treat them as a demonstration, not a benchmark. Train on a larger dataset (e.g. IMDB 50K) for reliable results.",
+    "The test set contains only 15 reviews, so each mistake changes the scores a lot."
+  ],
+  "top_features": {
+    "positive": [
+      [
+        "great",
+        0.33593690598311216
+      ],
+      [
+        "easy",
+        0.2624869317027067
+      ],
+      [
+        "absolutely",
+        0.26244829285835164
+      ],
+      [
+        "minute",
+        0.2412642646569783
+      ],
+      [
+        "fast",
+        0.20997562500805084
+      ],
+      [
+        "great value",
+        0.20985449799898298
+      ],
+      [
+        "value",
+        0.20985449799898298
+      ],
+      [
+        "comfortable",
+        0.20278063419963532
+      ],
+      [
+        "would",
+        0.19876708379812155
+      ],
+      [
+        "perfect",
+        0.19773760905319523
+      ],
+      [
+        "loud",
+        0.19557327093610388
+      ],
+      [
+        "brilliant",
+        0.1923740485261567
+      ],
+      [
+        "recommend",
+        0.1912911131344557
+      ],
+      [
+        "even",
+        0.18649348501010132
+      ],
+      [
+        "laugh",
+        0.18642615132414816
+      ]
+    ],
+    "negative": [
+      [
+        "not",
+        -0.4827146715953679
+      ],
+      [
+        "disappoint",
+        -0.2984904226804487
+      ],
+      [
+        "constantly",
+        -0.297139261475016
+      ],
+      [
+        "item",
+        -0.2679101125917016
+      ],
+      [
+        "poor",
+        -0.22036715836632081
+      ],
+      [
+        "extremely",
+        -0.2152058787075266
+      ],
+      [
+        "weak",
+        -0.2116468357107261
+      ],
+      [
+        "slow",
+        -0.21144034779601775
+      ],
+      [
+        "badly",
+        -0.21118532742747523
+      ],
+      [
+        "nothing",
+        -0.2062768029636457
+      ],
+      [
+        "miss",
+        -0.20383914469503142
+      ],
+      [
+        "damage",
+        -0.2010045603908471
+      ],
+      [
+        "terrible",
+        -0.20067453069292826
+      ],
+      [
+        "fell",
+        -0.2005676068028469
+      ],
+      [
+        "worth money",
+        -0.19828739048031743
+      ]
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+review_id,review_text,sentiment
+1,"The product quality is exceptional, exceeded all my expectations!",positive
+2,"Terrible customer service and the item arrived completely damaged.",negative
+3,"Average performance, decent for the price point but nothing special.",neutral
+4,"Absolutely love this! Easy to setup, robust, and works flawlessly.",positive
+5,"Stopped working after two days. Extremely disappointed with the purchase.",negative
+6,"Customer support helped resolve my setup question within ten minutes.",positive
+7,"Delivery was slow and package was missing one adapter cable.",negative
+8,"Clean interface and intuitive controls. Highly recommended for students.",positive
+9,"Not worth the money, plenty of better alternatives available.",negative
+10,"Great value and durable build. Would definitely purchase again.",positive
