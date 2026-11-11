@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Model Performance{% endblock %}
+{% block heading %}Machine Learning Model Performance{% endblock %}
+{% block subheading %}Random Forest vs XGBoost, evaluated on a stratified hold-out set{% endblock %}
+{% block content %}
+<div class="glass mb-3 d-flex flex-wrap align-items-center gap-3">
+  <div class="kpi-icon green"><i class="bi bi-trophy-fill"></i></div>
+  <div class="flex-grow-1"><div class="kpi-label">Best model (validation ROC-AUC)</div><div class="kpi-value" id="bestName">–</div><div class="kpi-note" id="bestNote"></div></div>
+  <button class="btn btn-ghost" id="retrainBtn"><i class="bi bi-arrow-repeat me-2"></i>Retrain models</button>
+</div>
+
+<div class="row g-3 mb-3">
+  <div class="col-lg-5"><div class="glass h-100"><div class="card-title-row"><h5>ROC-AUC Comparison</h5><span class="sub">5-fold CV vs test</span></div><div id="chAuc" class="chart chart-loading"></div></div></div>
+  <div class="col-lg-7"><div class="glass h-100"><div class="card-title-row"><h5>ROC Curves</h5><span class="sub">Hold-out test set</span></div><div id="chRoc" class="chart chart-loading"></div></div></div>
+</div>
+
+<div class="glass mb-3">
+  <div class="card-title-row"><h5>Model Comparison</h5><span class="sub" id="splitNote"></span></div>
+  <div class="table-wrap"><table class="table table-dark-glass table-hover"><thead><tr><th>Model</th><th>CV ROC-AUC (mean ± sd)</th><th>Test ROC-AUC</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>Threshold</th></tr></thead><tbody id="cmpBody"></tbody></table></div>
+  <div class="text-muted small mt-2" id="imbNote"></div>
+</div>
+
+<ul class="nav nav-tabs-glass mb-3" id="modelTabs"></ul>
+<div class="row g-3">
+  <div class="col-lg-5"><div class="glass h-100"><div class="card-title-row"><h5>Confusion Matrix</h5><span class="sub" id="cmSub"></span></div><div id="chCm" class="chart chart-loading"></div></div></div>
+  <div class="col-lg-7"><div class="glass h-100"><div class="card-title-row"><h5>Top 10 Influential Features</h5><span class="sub" id="fiSub"></span></div><div id="chFi" class="chart chart-loading"></div></div></div>
+  <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Precision · Recall · F1</h5></div><div id="chPrf" class="chart sm chart-loading"></div></div></div>
+  <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Importance by Original Feature</h5><span class="sub">One-hot columns summed</span></div><div id="chFg" class="chart sm chart-loading"></div></div></div>
+</div>
+{% endblock %}

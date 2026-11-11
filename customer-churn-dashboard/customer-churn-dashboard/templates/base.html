@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Dashboard{% endblock %} · ChurnIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body data-page="{{ active }}">
+  <div class="page-loader" id="pageLoader"><div><div class="loader-ring"></div><div class="loader-text">LOADING CHURNIQ…</div></div></div>
+  <div class="overlay-busy" id="busyOverlay"><div><div class="loader-ring"></div><div class="loader-text" id="busyText">Working…</div></div></div>
+  <div class="toast-wrap" id="toasts"></div>
+  <div class="sidebar-backdrop" id="sideBackdrop"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a href="/" class="brand"><span class="brand-logo"><i class="bi bi-graph-up-arrow"></i></span><span>ChurnIQ<small>CUSTOMER INTELLIGENCE</small></span></a>
+    <nav>
+      <div class="nav-section">Insights</div>
+      <a class="side-link {{ 'active' if active=='overview' }}" href="/"><i class="bi bi-grid-1x2-fill"></i>Overview</a>
+      <a class="side-link {{ 'active' if active=='analytics' }}" href="/analytics"><i class="bi bi-bar-chart-line-fill"></i>Customer Analytics</a>
+      <a class="side-link {{ 'active' if active=='retention' }}" href="/retention"><i class="bi bi-shield-check"></i>Retention Insights</a>
+      <div class="nav-section">Predict</div>
+      <a class="side-link {{ 'active' if active=='prediction' }}" href="/prediction"><i class="bi bi-person-bounding-box"></i>Single Prediction</a>
+      <a class="side-link {{ 'active' if active=='bulk' }}" href="/bulk-prediction"><i class="bi bi-cloud-arrow-up-fill"></i>Bulk Prediction</a>
+      <div class="nav-section">Data &amp; Models</div>
+      <a class="side-link {{ 'active' if active=='model' }}" href="/model-performance"><i class="bi bi-cpu-fill"></i>Model Performance</a>
+      <a class="side-link {{ 'active' if active=='customers' }}" href="/customers"><i class="bi bi-table"></i>Customer Data</a>
+      <a class="side-link {{ 'active' if active=='about' }}" href="/about"><i class="bi bi-info-circle-fill"></i>About Project</a>
+    </nav>
+    <div class="side-foot"><i class="bi bi-trophy-fill text-warning"></i> Active model<br><b id="sideModel">…</b></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i class="bi bi-list"></i></button>
+      <div><h1>{% block heading %}{% endblock %}</h1><p>{% block subheading %}{% endblock %}</p></div>
+      <span class="model-pill"><span class="dot"></span><span id="pillText">Model ready</span></span>
+    </header>
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='vendor/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/plotly.min.js') }}" charset="utf-8"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Overview{% endblock %}
+{% block heading %}Overview Dashboard{% endblock %}
+{% block subheading %}Live churn KPIs computed from the IBM Telco dataset{% endblock %}
+{% block content %}
+<div class="row g-3 mb-3">
+  {% for icon,color,label,id,note in [
+    ('people-fill','blue','Total Customers','kpiTotal','Unique accounts'),
+    ('person-dash-fill','red','Churned Customers','kpiChurned','Left in last month'),
+    ('person-check-fill','green','Retained Customers','kpiRetained','Still subscribed'),
+    ('percent','amber','Churn Rate','kpiRate','Churned ÷ total'),
+    ('currency-dollar','violet','Avg Monthly Charges','kpiAvg','Per customer'),
+    ('exclamation-triangle-fill','red','Revenue at Risk','kpiRisk','Monthly, high-risk retained') ] %}
+  <div class="col-12 col-sm-6 col-xl-4"><div class="glass hoverable kpi">
+    <div class="kpi-icon {{ color }}"><i class="bi bi-{{ icon }}"></i></div>
+    <div><div class="kpi-label">{{ label }}</div><div class="kpi-value" id="{{ id }}">–</div><div class="kpi-note">{{ note }}</div></div>
+  </div></div>
+  {% endfor %}
+</div>
+
+<div class="row g-3 mb-3">
+  <div class="col-lg-5"><div class="glass h-100">
+    <div class="card-title-row"><h5>Churn Distribution</h5><span class="sub">Actual outcomes</span></div>
+    <div id="chChurn" class="chart sm chart-loading"></div></div></div>
+  <div class="col-lg-7"><div class="glass h-100">
+    <div class="card-title-row"><h5>Monthly Charges Distribution</h5><span class="sub">Customers per charge band</span></div>
+    <div id="chCharges" class="chart sm chart-loading"></div></div></div>
+</div>
+<div class="row g-3">
+  <div class="col-lg-6"><div class="glass h-100">
+    <div class="card-title-row"><h5>Contract Distribution</h5><span class="sub">Customers &amp; churn rate</span></div>
+    <div id="chContract" class="chart sm chart-loading"></div></div></div>
+  <div class="col-lg-6"><div class="glass h-100">
+    <div class="card-title-row"><h5>Churn Risk Overview</h5><span class="sub" id="riskSub">Model risk bands</span></div>
+    <div id="chRisk" class="chart sm chart-loading"></div>
+    <div class="d-flex gap-2 flex-wrap mt-2" id="riskBadges"></div></div></div>
+</div>
+{% endblock %}

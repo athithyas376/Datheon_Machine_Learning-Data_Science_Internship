@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Customer Analytics{% endblock %}
+{% block heading %}Customer Analytics{% endblock %}
+{% block subheading %}Demographics, services and billing patterns vs. churn{% endblock %}
+{% block content %}
+<ul class="nav nav-tabs-glass mb-3" id="anTabs">
+  <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabDemo" type="button">Demographics</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabServ" type="button">Services &amp; Contract</button></li>
+  <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabBill" type="button">Billing &amp; Tenure</button></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="tabDemo">
+    <div class="row g-3">
+      <div class="col-md-6 col-xl-3"><div class="glass h-100"><div class="card-title-row"><h5>Gender</h5></div><div id="chGender" class="chart sm chart-loading"></div></div></div>
+      <div class="col-md-6 col-xl-3"><div class="glass h-100"><div class="card-title-row"><h5>Senior Citizen</h5></div><div id="chSenior" class="chart sm chart-loading"></div></div></div>
+      <div class="col-md-6 col-xl-3"><div class="glass h-100"><div class="card-title-row"><h5>Partner</h5></div><div id="chPartner" class="chart sm chart-loading"></div></div></div>
+      <div class="col-md-6 col-xl-3"><div class="glass h-100"><div class="card-title-row"><h5>Dependents</h5></div><div id="chDependents" class="chart sm chart-loading"></div></div></div>
+      <div class="col-12"><div id="demoInsights"></div></div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="tabServ">
+    <div class="row g-3">
+      <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Internet Service</h5><span class="sub">Stacked customers + churn rate</span></div><div id="chInternet" class="chart chart-loading"></div></div></div>
+      <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Contract Type</h5><span class="sub">Stacked customers + churn rate</span></div><div id="chContract" class="chart chart-loading"></div></div></div>
+      <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Tech Support</h5><span class="sub">Churn rate by subscription</span></div><div id="chTech" class="chart sm chart-loading"></div></div></div>
+      <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Payment Method</h5><span class="sub">Churn rate by method</span></div><div id="chPayment" class="chart sm chart-loading"></div></div></div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="tabBill">
+    <div class="row g-3">
+      <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Tenure Distribution</h5><span class="sub">Churned vs retained</span></div><div id="chTenure" class="chart chart-loading"></div></div></div>
+      <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Churn Rate by Tenure Band</h5></div><div id="chTenureBand" class="chart chart-loading"></div></div></div>
+      <div class="col-12"><div class="glass"><div class="card-title-row"><h5>Churn Rate by Monthly Charge Band</h5></div><div id="chChargeBand" class="chart sm chart-loading"></div></div></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

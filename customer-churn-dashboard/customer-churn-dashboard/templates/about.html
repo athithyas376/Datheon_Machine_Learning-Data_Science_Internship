@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block heading %}About the Project{% endblock %}
+{% block subheading %}Predictive Customer Churn Classifier using Random Forest &amp; XGBoost{% endblock %}
+{% block content %}
+<div class="row g-3 mb-3">
+  <div class="col-lg-7"><div class="glass h-100"><div class="card-title-row"><h5><i class="bi bi-bullseye me-2"></i>Project description</h5></div>
+    <p>Customer churn costs telecom operators far more than acquiring new subscribers. This project predicts which customers are likely to leave, explains <em>why</em>, and suggests retention actions, all through an interactive dashboard connected to real trained models.</p>
+    <p class="mb-0">Every number and chart in this app is computed from the IBM Telco Customer Churn dataset or from the models trained on it. Nothing is hard-coded.</p></div></div>
+  <div class="col-lg-5"><div class="glass h-100"><div class="card-title-row"><h5><i class="bi bi-database me-2"></i>Dataset</h5></div>
+    <div id="dsInfo" class="small"><div class="skeleton" style="height:90px;border-radius:12px"></div></div></div></div>
+</div>
+<div class="row g-3 mb-3">
+  <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5><i class="bi bi-diagram-3 me-2"></i>Machine learning workflow</h5></div>
+    {% for t,d in [
+      ('Load &amp; clean','TotalCharges converted to numeric (11 blank values for tenure-0 customers), customerID dropped, churn mapped to 0/1.'),
+      ('Stratified split','80% train / 20% test with a fixed seed (42); the test set is never touched during fitting or tuning.'),
+      ('Preprocessing pipeline','Median imputation + StandardScaler for numeric features, most-frequent imputation + OneHotEncoder for categorical features, fit on training data only.'),
+      ('Handle imbalance','~27% churners: Random Forest uses balanced_subsample class weights, XGBoost uses scale_pos_weight.'),
+      ('Cross-validate &amp; select','5-fold stratified CV ROC-AUC picks the best model; the decision threshold is tuned (max F1) on out-of-fold predictions.'),
+      ('Evaluate &amp; explain','ROC-AUC, confusion matrix, precision/recall/F1 on the hold-out set plus feature importances.')] %}
+    <div class="step"><div class="num">{{ loop.index }}</div><div><b>{{ t|safe }}</b><div class="text-muted small">{{ d }}</div></div></div>{% endfor %}</div></div>
+  <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5><i class="bi bi-cpu me-2"></i>Model architecture</h5></div>
+    <div class="mono-block mb-3">Raw features (19)<br>&nbsp;└─ ColumnTransformer<br>&nbsp;&nbsp;&nbsp;├─ numeric → Imputer → StandardScaler<br>&nbsp;&nbsp;&nbsp;└─ categorical → Imputer → OneHotEncoder<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ Classifier → churn probability<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ Random Forest (400 trees, depth 12)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ XGBoost (300 trees, depth 3, lr 0.05)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ threshold → Low / Medium / High risk</div>
+    <div class="insight"><i class="bi bi-shield-lock"></i><div>Risk bands: <b>Low</b> &lt; 30%, <b>Medium</b> 30–60%, <b>High</b> ≥ 60% churn probability.</div></div>
+    <div class="card-title-row mt-3"><h5><i class="bi bi-tools me-2"></i>Technologies</h5></div>
+    {% for i,n in [('filetype-py','Python 3'),('lightning','Flask'),('tree','scikit-learn'),('rocket-takeoff','XGBoost'),('table','pandas'),('calculator','NumPy'),('bar-chart','Plotly.js'),('bootstrap','Bootstrap 5'),('box','joblib')] %}<span class="tech-chip"><i class="bi bi-{{ i }}"></i>{{ n }}</span>{% endfor %}
+  </div></div>
+</div>
+{% endblock %}

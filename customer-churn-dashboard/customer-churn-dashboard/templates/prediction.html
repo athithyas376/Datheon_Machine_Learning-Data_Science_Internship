@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Churn Prediction{% endblock %}
+{% block heading %}Customer Churn Prediction{% endblock %}
+{% block subheading %}Score a single customer with the best trained model{% endblock %}
+{% block content %}
+{% macro sel(name, label, default=None) %}
+<div class="col-6 col-md-4"><label class="form-label" for="f_{{ name }}">{{ label }}</label>
+<select class="form-select" id="f_{{ name }}" name="{{ name }}">
+{% for v in allowed[name] %}<option value="{{ v }}" {{ 'selected' if v==default }}>{{ v }}</option>{% endfor %}</select></div>
+{% endmacro %}
+<div class="row g-3">
+  <div class="col-xl-7">
+    <form id="predForm" class="glass" novalidate>
+      <div class="card-title-row"><h5><i class="bi bi-sliders me-2"></i>Customer Profile</h5>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-ghost btn-sm" id="sampleHigh"><i class="bi bi-lightning-charge me-1"></i>High-risk example</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="sampleLow"><i class="bi bi-emoji-smile me-1"></i>Loyal example</button>
+        </div></div>
+      <h6 class="text-muted text-uppercase small mt-3">Account &amp; billing</h6>
+      <div class="row g-3 mb-3">
+        <div class="col-6 col-md-4"><label class="form-label" for="f_tenure">Tenure (months)</label><input type="number" class="form-control" id="f_tenure" name="tenure" min="0" max="100" step="1" value="12" required></div>
+        <div class="col-6 col-md-4"><label class="form-label" for="f_MonthlyCharges">Monthly charges ($)</label><input type="number" class="form-control" id="f_MonthlyCharges" name="MonthlyCharges" min="0" step="0.01" value="70" required></div>
+        <div class="col-12 col-md-4"><label class="form-label" for="f_TotalCharges">Total charges ($)</label><input type="number" class="form-control" id="f_TotalCharges" name="TotalCharges" min="0" step="0.01" value="840" required><div class="form-text">Auto-fills as tenure × monthly until edited.</div></div>
+        {{ sel('Contract','Contract type','Month-to-month') }}
+        {{ sel('PaymentMethod','Payment method','Electronic check') }}
+        {{ sel('PaperlessBilling','Paperless billing','Yes') }}
+      </div>
+      <h6 class="text-muted text-uppercase small">Services</h6>
+      <div class="row g-3 mb-3">
+        {{ sel('InternetService','Internet service','Fiber optic') }}
+        {{ sel('PhoneService','Phone service','Yes') }}
+        {{ sel('MultipleLines','Multiple lines','No') }}
+        {{ sel('OnlineSecurity','Online security','No') }}
+        {{ sel('OnlineBackup','Online backup','No') }}
+        {{ sel('DeviceProtection','Device protection','No') }}
+        {{ sel('TechSupport','Tech support','No') }}
+        {{ sel('StreamingTV','Streaming TV','No') }}
+        {{ sel('StreamingMovies','Streaming movies','No') }}
+      </div>
+      <h6 class="text-muted text-uppercase small">Demographics</h6>
+      <div class="row g-3 mb-4">
+        {{ sel('gender','Gender','Female') }}
+        <div class="col-6 col-md-4"><label class="form-label" for="f_SeniorCitizen">Senior citizen</label><select class="form-select" id="f_SeniorCitizen" name="SeniorCitizen"><option value="0" selected>No</option><option value="1">Yes</option></select></div>
+        {{ sel('Partner','Partner','No') }}
+        {{ sel('Dependents','Dependents','No') }}
+      </div>
+      <div id="predError" class="alert alert-glass alert-danger-glass d-none"></div>
+      <button type="submit" class="btn btn-grad btn-lg w-100" id="predBtn"><i class="bi bi-magic me-2"></i>Predict Churn</button>
+    </form>
+  </div>
+  <div class="col-xl-5">
+    <div id="resultCard" class="glass result-card empty"><div><i class="bi bi-activity"></i>Fill in the profile and press <b>Predict Churn</b><br>to see the probability, risk level and retention plan.</div></div>
+  </div>
+</div>
+{% endblock %}

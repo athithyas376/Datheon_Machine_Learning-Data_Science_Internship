@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Customer Data{% endblock %}
+{% block heading %}Customer Data Management{% endblock %}
+{% block subheading %}Search, filter, sort and export the customer base with model risk scores{% endblock %}
+{% block content %}
+<div class="glass mb-3">
+  <div class="row g-3 align-items-end">
+    <div class="col-md-4"><label class="form-label" for="q">Search</label><div class="position-relative"><input class="form-control" id="q" placeholder="Customer ID, contract, payment, internet…" autocomplete="off"></div></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="fChurn">Churn status</label><select class="form-select" id="fChurn"><option value="">All</option><option>Yes</option><option>No</option></select></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="fContract">Contract</label><select class="form-select" id="fContract"><option value="">All</option>{% for c in allowed['Contract'] %}<option>{{ c }}</option>{% endfor %}</select></div>
+    <div class="col-6 col-md-2"><label class="form-label" for="fRisk">Risk level</label><select class="form-select" id="fRisk"><option value="">All</option><option>Low</option><option>Medium</option><option>High</option></select></div>
+    <div class="col-6 col-md-2 d-flex gap-2"><button class="btn btn-ghost flex-fill" id="resetBtn" title="Reset filters"><i class="bi bi-x-circle me-1"></i>Reset</button></div>
+  </div>
+</div>
+<div class="glass">
+  <div class="card-title-row"><h5 id="custCount">Customers</h5><div class="d-flex gap-2 align-items-center">
+    <select class="form-select form-select-sm" id="perPage" style="width:auto"><option>10</option><option selected>15</option><option>25</option><option>50</option></select>
+    <a class="btn btn-grad btn-sm" id="exportBtn" href="/api/customers/export"><i class="bi bi-download me-1"></i>Export filtered CSV</a></div></div>
+  <div class="table-wrap"><table class="table table-dark-glass table-hover"><thead><tr>
+    <th class="sortable" data-sort="customerID">Customer ID</th><th class="sortable" data-sort="gender">Gender</th><th class="sortable" data-sort="Senior">Senior</th><th class="sortable" data-sort="tenure">Tenure</th><th class="sortable" data-sort="Contract">Contract</th><th class="sortable" data-sort="InternetService">Internet</th><th class="sortable" data-sort="PaymentMethod">Payment</th><th class="sortable" data-sort="MonthlyCharges">Monthly</th><th class="sortable" data-sort="TotalCharges">Total</th><th class="sortable" data-sort="ChurnLabel">Churned</th><th class="sortable" data-sort="churn_probability">Probability</th><th class="sortable" data-sort="risk_level">Risk</th></tr></thead>
+    <tbody id="custBody"></tbody></table></div>
+  <nav class="mt-3"><ul class="pagination pagination-sm justify-content-center flex-wrap mb-0" id="custPager"></ul></nav>
+</div>
+{% endblock %}

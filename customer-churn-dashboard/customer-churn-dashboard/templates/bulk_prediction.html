@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Bulk Prediction{% endblock %}
+{% block heading %}Bulk Customer Prediction{% endblock %}
+{% block subheading %}Upload a CSV, score every customer and download the results{% endblock %}
+{% block content %}
+<div class="row g-3 mb-3">
+  <div class="col-lg-7"><div class="glass h-100">
+    <div class="card-title-row"><h5><i class="bi bi-cloud-arrow-up me-2"></i>Upload customers</h5>
+      <a class="btn btn-ghost btn-sm" href="/api/sample-csv"><i class="bi bi-download me-1"></i>Sample CSV</a></div>
+    <div class="dropzone" id="dropzone"><i class="bi bi-file-earmark-spreadsheet"></i>
+      <p class="mb-1 mt-2"><b>Drag &amp; drop a CSV here</b> or click to browse</p>
+      <p class="text-muted small mb-0" id="fileName">No file selected · max 8 MB</p>
+      <input type="file" id="csvInput" accept=".csv,text/csv" hidden></div>
+    <div id="bulkError" class="alert alert-glass alert-danger-glass d-none mt-3"></div>
+    <div id="bulkWarn" class="alert alert-glass alert-warn-glass d-none mt-3"></div>
+    <button class="btn btn-grad w-100 mt-3" id="bulkBtn" disabled><i class="bi bi-lightning-charge-fill me-2"></i>Run Predictions</button>
+  </div></div>
+  <div class="col-lg-5"><div class="glass h-100">
+    <div class="card-title-row"><h5><i class="bi bi-list-check me-2"></i>Required columns</h5></div>
+    <p class="text-muted small">Your CSV needs these headers (<code>customerID</code> is optional but recommended; <code>Churn</code> is ignored if present).</p>
+    <div class="mono-block" id="reqCols">customerID, gender, SeniorCitizen, Partner, Dependents, tenure, PhoneService, MultipleLines, InternetService, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies, Contract, PaperlessBilling, PaymentMethod, MonthlyCharges, TotalCharges</div>
+  </div></div>
+</div>
+
+<div id="bulkResults" class="d-none">
+  <div class="row g-3 mb-3">
+    {% for icon,color,label,id in [('people-fill','blue','Customers scored','bTotal'),('exclamation-octagon-fill','red','High-risk customers','bHigh'),('exclamation-triangle-fill','amber','Medium risk','bMed'),('shield-fill-check','green','Low risk','bLow')] %}
+    <div class="col-6 col-xl-3"><div class="glass hoverable kpi"><div class="kpi-icon {{ color }}"><i class="bi bi-{{ icon }}"></i></div><div><div class="kpi-label">{{ label }}</div><div class="kpi-value" id="{{ id }}">–</div></div></div></div>
+    {% endfor %}
+  </div>
+  <div class="glass">
+    <div class="card-title-row"><h5>Predictions <span class="sub" id="bNote"></span></h5>
+      <a class="btn btn-grad btn-sm" id="downloadBtn" href="#"><i class="bi bi-download me-1"></i>Download results CSV</a></div>
+    <div class="table-wrap"><table class="table table-dark-glass table-hover"><thead><tr><th>Customer</th><th>Tenure</th><th>Contract</th><th>Monthly</th><th>Churn probability</th><th>Predicted churn</th><th>Risk</th></tr></thead><tbody id="bulkBody"></tbody></table></div>
+    <nav class="mt-3"><ul class="pagination pagination-sm justify-content-center mb-0" id="bulkPager"></ul></nav>
+  </div>
+</div>
+{% endblock %}

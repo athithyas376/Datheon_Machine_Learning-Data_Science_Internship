@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Retention Insights{% endblock %}
+{% block heading %}Customer Retention Insights{% endblock %}
+{% block subheading %}Who is likely to leave, why, and what to do about it{% endblock %}
+{% block content %}
+<div class="row g-3 mb-3">
+  <div class="col-sm-6 col-xl-4"><div class="glass hoverable kpi"><div class="kpi-icon red"><i class="bi bi-exclamation-octagon-fill"></i></div><div><div class="kpi-label">High-risk (all)</div><div class="kpi-value" id="rHigh">–</div><div class="kpi-note">Out-of-fold model score ≥ 60%</div></div></div></div>
+  <div class="col-sm-6 col-xl-4"><div class="glass hoverable kpi"><div class="kpi-icon amber"><i class="bi bi-person-exclamation"></i></div><div><div class="kpi-label">High-risk still active</div><div class="kpi-value" id="rHighRet">–</div><div class="kpi-note">Retention targets</div></div></div></div>
+  <div class="col-sm-12 col-xl-4"><div class="glass hoverable kpi"><div class="kpi-icon blue"><i class="bi bi-percent"></i></div><div><div class="kpi-label">Baseline churn rate</div><div class="kpi-value" id="rBase">–</div><div class="kpi-note">Whole customer base</div></div></div></div>
+</div>
+<div class="row g-3 mb-3">
+  <div class="col-lg-6"><div class="glass h-100"><div class="card-title-row"><h5>Key Churn Factors</h5><span class="sub">Best-model importance</span></div><div id="chFactors" class="chart chart-loading"></div></div></div>
+  <div class="col-lg-6"><div class="glass h-100">
+    <div class="card-title-row"><h5>Retention Playbook</h5></div>
+    <ul class="nav nav-tabs-glass mb-3"><li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pbContract" type="button">Contract</button></li><li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pbCharges" type="button">Monthly charges</button></li><li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pbTenure" type="button">Tenure</button></li></ul>
+    <div class="tab-content">
+      {% for id,key in [('pbContract','contract'),('pbCharges','charges'),('pbTenure','tenure')] %}
+      <div class="tab-pane fade {{ 'show active' if loop.first }}" id="{{ id }}"><div id="chRate_{{ key }}" class="chart sm chart-loading" style="height:210px"></div><div id="sug_{{ key }}" class="mt-2"></div></div>
+      {% endfor %}
+    </div></div></div>
+</div>
+<div class="glass">
+  <div class="card-title-row"><h5>Top high-risk customers (still active)</h5><a class="btn btn-ghost btn-sm" href="/customers"><i class="bi bi-table me-1"></i>Open full customer table</a></div>
+  <div class="table-wrap"><table class="table table-dark-glass table-hover"><thead><tr><th>Customer</th><th>Tenure</th><th>Contract</th><th>Monthly</th><th>Churn probability</th><th>Suggested action</th></tr></thead><tbody id="hrBody"></tbody></table></div>
+</div>
+{% endblock %}
