@@ -1,0 +1,45 @@
+feature,VIF,severity
+Latitude Longitude,744591.851,severe
+Longitude^2,607380.857,severe
+Longitude,367603.559,severe
+Latitude,259696.345,severe
+AveRooms Longitude,127956.329,severe
+MedInc Longitude,122401.34,severe
+AveRooms,69028.722,severe
+MedInc,64495.702,severe
+AveBedrms Longitude,51630.395,severe
+AveOccup Longitude,50408.295,severe
+Population Longitude,47779.705,severe
+HouseAge Longitude,46686.224,severe
+Latitude^2,37727.849,severe
+AveBedrms,29435.763,severe
+AveOccup,27769.035,severe
+Population,26048.287,severe
+HouseAge,24654.826,severe
+AveRooms Latitude,12189.163,severe
+MedInc Latitude,10810.654,severe
+AveBedrms Latitude,5179.031,severe
+AveOccup Latitude,4091.88,severe
+HouseAge Latitude,3928.178,severe
+Population Latitude,3914.951,severe
+AveRooms AveBedrms,534.316,severe
+MedInc AveRooms,425.173,severe
+AveRooms^2,336.658,severe
+AveBedrms^2,276.673,severe
+MedInc AveBedrms,185.341,severe
+AveBedrms Population,170.564,severe
+HouseAge AveBedrms,115.19,severe
+AveBedrms AveOccup,97.727,severe
+AveRooms AveOccup,90.872,severe
+MedInc^2,83.649,severe
+AveRooms Population,75.349,severe
+HouseAge AveRooms,68.371,severe
+MedInc AveOccup,63.704,severe
+AveOccup^2,45.822,severe
+HouseAge AveOccup,31.278,severe
+MedInc HouseAge,31.122,severe
+MedInc Population,30.871,severe
+Population AveOccup,27.986,severe
+HouseAge^2,27.325,severe
+Population^2,12.389,severe
+HouseAge Population,8.948,moderate

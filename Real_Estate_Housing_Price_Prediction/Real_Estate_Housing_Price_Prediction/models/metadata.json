@@ -1,0 +1,163 @@
+{
+  "dataset_name": "California Housing",
+  "target": "MedHouseVal",
+  "numeric_features": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude"
+  ],
+  "categorical_features": [
+    "OceanProximity"
+  ],
+  "model_numeric_features": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude"
+  ],
+  "feature_set": "Polynomial (degree 2)",
+  "feature_mode": "poly",
+  "n_rows_raw": 20640,
+  "n_rows_used": 20640,
+  "n_train": 16512,
+  "n_test": 4128,
+  "test_size": 0.2,
+  "random_state": 42,
+  "cv_folds": 5,
+  "n_duplicates_removed": 0,
+  "n_missing_target_removed": 0,
+  "unit": {
+    "scale": 100000,
+    "prefix": "$",
+    "label": "Median house value (USD)"
+  },
+  "target_cap": {
+    "value": 5.00001,
+    "share": 0.04675387596899225
+  },
+  "trained_at": "2026-11-11T09:58:26",
+  "sklearn_version": "1.9.1",
+  "python_version": "3.14.7",
+  "train_seconds": 101.1,
+  "best_model": "Ridge",
+  "best_params": {
+    "OLS": {},
+    "Ridge": {
+      "alpha": 0.001
+    },
+    "Lasso": {
+      "alpha": 0.0001
+    }
+  },
+  "form_spec": {
+    "MedInc": {
+      "kind": "numeric",
+      "min": 0.4999,
+      "max": 15.0001,
+      "median": 3.5458,
+      "p01": 1.066898,
+      "p99": 10.576901999999988,
+      "step": 0.01,
+      "integer": false,
+      "label": "Median income (tens of thousands of USD)"
+    },
+    "HouseAge": {
+      "kind": "numeric",
+      "min": 1.0,
+      "max": 52.0,
+      "median": 29.0,
+      "p01": 4.0,
+      "p99": 52.0,
+      "step": 1.0,
+      "integer": true,
+      "label": "Median house age (years)"
+    },
+    "AveRooms": {
+      "kind": "numeric",
+      "min": 0.8888888888888888,
+      "max": 141.9090909090909,
+      "median": 5.235873651414888,
+      "p01": 2.5781951039323014,
+      "p99": 10.318432008650973,
+      "step": 0.01,
+      "integer": false,
+      "label": "Average rooms per household"
+    },
+    "AveBedrms": {
+      "kind": "numeric",
+      "min": 0.3333333333333333,
+      "max": 25.636363636363637,
+      "median": 1.049285568483364,
+      "p01": 0.8711612903225807,
+      "p99": 2.1165364366860593,
+      "step": 0.01,
+      "integer": false,
+      "label": "Average bedrooms per household"
+    },
+    "Population": {
+      "kind": "numeric",
+      "min": 3.0,
+      "max": 35682.0,
+      "median": 1167.0,
+      "p01": 88.11000000000001,
+      "p99": 5798.719999999972,
+      "step": 1.0,
+      "integer": true,
+      "label": "Block-group population"
+    },
+    "AveOccup": {
+      "kind": "numeric",
+      "min": 0.6923076923076923,
+      "max": 1243.3333333333333,
+      "median": 2.8172397135276888,
+      "p01": 1.5388377432198934,
+      "p99": 5.4101572433083716,
+      "step": 0.01,
+      "integer": false,
+      "label": "Average household occupancy"
+    },
+    "Latitude": {
+      "kind": "numeric",
+      "min": 32.55,
+      "max": 41.95,
+      "median": 34.26,
+      "p01": 32.68,
+      "p99": 40.64889999999999,
+      "step": 0.01,
+      "integer": false,
+      "label": "Latitude"
+    },
+    "Longitude": {
+      "kind": "numeric",
+      "min": -124.35,
+      "max": -114.31,
+      "median": -118.51,
+      "p01": -123.2389,
+      "p99": -116.31,
+      "step": 0.01,
+      "integer": false,
+      "label": "Longitude"
+    },
+    "OceanProximity": {
+      "kind": "categorical",
+      "options": [
+        "<1H OCEAN",
+        "INLAND",
+        "NEAR OCEAN",
+        "NEAR BAY",
+        "ISLAND"
+      ],
+      "default": "<1H OCEAN",
+      "label": "Ocean proximity"
+    }
+  }
+}

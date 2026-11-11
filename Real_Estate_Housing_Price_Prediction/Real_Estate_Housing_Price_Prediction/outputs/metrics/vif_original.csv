@@ -1,0 +1,9 @@
+feature,VIF,severity
+Latitude,9.206,moderate
+Longitude,8.876,moderate
+AveRooms,7.917,moderate
+AveBedrms,6.609,moderate
+MedInc,2.54,low
+HouseAge,1.237,low
+Population,1.135,low
+AveOccup,1.01,low
